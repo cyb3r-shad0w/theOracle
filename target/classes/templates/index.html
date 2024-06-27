@@ -8,50 +8,50 @@
 	<body>
 		Inserisci i valori per ottenere le percentuali reali.</br>
 		<form action="/dataReader" method="post" id="form">
-				Quote Bookmaker:<br>
+				(1)Quote Bookmaker:<br>
 					Quota 1: <input type="text" name="quotaB1"/><br>
 					Quota X: <input type="text" name="quotaBX"/><br>
 					Quota 2: <input type="text" name="quotaB2"/><br>
 					
-				Vittorie e sconfitte <b>TOTALI</b> in campionato squadra <b>CASA</b>:<br>
+				(2)Vittorie e sconfitte <b>TOTALI</b> in campionato squadra <b>CASA</b>:<br>
 				Vittorie Casa: <input type="text" name="vittorieTotaliCasa"/><br>
 				Sconfitte Casa:<input type="text" name="sconfitteTotaliCasa"/><br>
 				
-				Vittorie e sconfitte <b>TOTALI</b> in campionato squadra <b>OSPITE</b>:<br>
+				(2)Vittorie e sconfitte <b>TOTALI</b> in campionato squadra <b>OSPITE</b>:<br>
 				Vittorie Ospite: <input type="text" name="vittorieTotaliOspite"/><br>
 				Sconfitte Ospite:<input type="text" name="sconfitteTotaliOspite"/><br>
-				
-				Vittorie e sconfitte <b>ULTIME 5 partite(SOLO CASA)</b> in campionato squadra <b>CASA</b>:<br>
-				Vittorie Casa: <input type="text" name="vittUltime5inCasa"/><br>
-				Sconfitte Casa:<input type="text" name="sconfUlt5inCasa"/><br>
-				
-				Vittorie e sconfitte <b>ULTIME 5 partite(SOLO TRASFERTA)</b> in campionato squadra <b>OSPITE</b>:<br>
-				Vittorie Ospite: <input type="text" name="vittUltime5inTrasfOspite"/><br>
-				Sconfitte Ospite:<input type="text" name="sconfUlt5inTraOspite"/><br>
 					
-				Vittorie e sconfitte <b>ULTIME 5 partite</b> in campionato squadra <b>CASA</b>:<br>
+				(3)Vittorie e sconfitte <b>ULTIME 5 partite</b> in campionato squadra <b>CASA</b>:<br>
 				Vittorie Squadra Casa:<input type="text" name="vittUltime5TotCasa"/><br>
 				Sconfitte Squadra Casa:<input type="text" name="sconfUltime5Casa"/><br>    
 				
-				Vittorie e sconfitte <b>ULTIME 5 partite</b> in campionato squadra <b>OSPITE</b>:<br>
+				(3)Vittorie e sconfitte <b>ULTIME 5 partite</b> in campionato squadra <b>OSPITE</b>:<br>
 				Vittorie Squadra Ospite:<input type="text" name="vittUltime5TotOspite"/><br>
 				Sconfitte Squadra Ospite:<input type="text" name="sconfitteUltime5Ospite"/><br>  
 				
-				Vittorie e sconfitte <b>TOTALI IN CASA</b> in campionato squadra <b>CASA</b>:<br>
+				(4)Vittorie e sconfitte <b>TOTALI IN CASA</b> in campionato squadra <b>CASA</b>:<br>
 				Vittorie Squadra Casa:<input type="text" name="vittCasaTot"/><br>
 				Sconfitte Squadra Casa:<input type="text" name="sconfCasaTot"/><br>  
 				
-				Vittorie e sconfitte <b>TOTALI IN TRASFERTA</b> in campionato squadra <b>OSPITE</b>:<br>
+				(4)Vittorie e sconfitte <b>TOTALI IN TRASFERTA</b> in campionato squadra <b>OSPITE</b>:<br>
 				Vittorie Squadra Ospite:<input type="text" name="vittTrasTot"/><br>
 				Sconfitte Squadra Ospite:<input type="text" name="sconfTrasTot"/><br>     
+				
+				(5)Vittorie e sconfitte <b>ULTIME 5 partite(SOLO CASA)</b> in campionato squadra <b>CASA</b>:<br>
+				Vittorie Casa: <input type="text" name="vittUltime5inCasa"/><br>
+				Sconfitte Casa:<input type="text" name="sconfUlt5inCasa"/><br>
+				
+				(5)Vittorie e sconfitte <b>ULTIME 5 partite(SOLO TRASFERTA)</b> in campionato squadra <b>OSPITE</b>:<br>
+				Vittorie Ospite: <input type="text" name="vittUltime5inTrasfOspite"/><br>
+				Sconfitte Ospite:<input type="text" name="sconfUlt5inTraOspite"/><br>
 					
 				Numero <b>TOTALE<b> di partite giocate nel <b>CAMPIONATO IN ESAME<b>(AD ESEMPIO SERIE A) delle due squadre:
-				Partite totali squadra Casa:<input type="text" name="partiteTotCasa"/><br>
-				Partite totali squadra Ospite:<input type="text" name="partiteTotOspite"/><br>
+				Partite totali giocate in campionato squadra Casa:<input type="text" name="partiteTotCasa"/><br>
+				Partite totali giocate in campionato squadra Ospite:<input type="text" name="partiteTotOspite"/><br>
 				
 				Numero <b>TOTALE<b> di partite giocate in <b>CASA/TRASFERTA<b> nel <b>CAMPIONATO IN ESAME<b>(AD ESEMPIO SERIE A) delle due squadre:
-				Partite totali in casa squadra Casa:<input type="text" name="totatliPartiteCasaInCasa"/><br>
-				Partite totali in trasferta squadra Ospite:<input type="text" name="totaliPartiteOspiteInTrasferta"/><br> 
+				Partite totali giocate in casa squadra Casa:<input type="text" name="totatliPartiteCasaInCasa"/><br>
+				Partite totali giocate in trasferta squadra Ospite:<input type="text" name="totaliPartiteOspiteInTrasferta"/><br> 
 				
 				<input type="submit" value="submit">
 		</form>

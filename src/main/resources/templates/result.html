@@ -6,20 +6,42 @@
 	</head>
 	
 	<body>
-		Risultato <b>PASSO 1<b>:</br>	
+		Risultato <b>PASSO 1</b>:</br>
 		Il valore delle PERCENTUALI dato dal BOOKMAKER è:</br>
 		
-		 -probabilità per la squadra di CASA di vincere secondo i BM è:
+		 Probabilità per la squadra di CASA di vincere secondo i BM è:
 		<input type="text" th:value="${marketValueB1}" readOnly>%</br>
 		
-		 -probabilità per la squadra in TRASFERTA di vincere secondo i BM è:
+		 Probabilità per la squadra in TRASFERTA di vincere secondo i BM è:
 		<input type="text" th:value="${marketValueB2}" readOnly>%</br>
 		
-		 -probabilità di PAREGGIARE secondo i BM è:
+		 Probabilità di PAREGGIARE secondo i BM è:
 		<input type="text" th:value="${marketValueBX}" readOnly>%</br>
 		
-		 -allibramento sulla seguente partita è:
-		<input type="text" th:value="${aggio}" readOnly>%</br>	
+		 Allibramento sulla seguente partita è:
+		<input type="text" th:value="${aggio}" readOnly>%</br>
+
+		Risultato <b>PASSO 2</b>:</br>
+
+		Il valore dato dal calcolo delle PARTITE TOTALI è:
+		La probabilità per la squadra di CASA è: " + percPartiteTot1+"%");
+		La probabilità per la squadra in TRASFERTA è: " + percPartiteTot2+"%");
+		La probabilità di PAREGGIARE è: " + percPartiteTotX+"%");
+
+
+
+
+		System.out.println("-----------------PASSO 6/10----------------");
+		cqr.percentualiReali();
+		System.out.println("-----------------PASSO 7/10----------------");
+		cqr.quoteReali();
+		System.out.println("-----------------PASSO 8/10----------------");
+		cqr.tipologiaDiPartita();
+		System.out.println("-----------------PASSO 9/10----------------");
+		cqr.valueBet();
+		System.out.println("-----------------PASSO 10/10----------------");
+		System.out.println("Calcola l'EXPECTED VALUE!");
+		System.out.println("-----------------COMING SOON---------------");
 	</body>
 	
 </html>
