@@ -21,12 +21,17 @@ public class PredictionController {
 	}
 	
 	@PostMapping("/dataReader")
-	public String dataReader(Model model,@RequestParam("quotaB1") String quotaB1) {
-		
-		
-		
-		
-		model.addAttribute("quotaB1", quotaB1);
+	public String dataReader(Model model,
+							@RequestParam("quotaB1") String quotaB1,
+							@RequestParam("quotaBX") String quotaBX,
+							@RequestParam("quotaB2") String quotaB2
+							) {
+		String [] probabilitaImplicita= service.probabilitaImplicita(quotaB1, quotaBX, quotaB2);
+		model.addAttribute("marketValueB1", probabilitaImplicita[0]);
+		model.addAttribute("marketValueBX", probabilitaImplicita[1]);
+		model.addAttribute("marketValueB2", probabilitaImplicita[2]);
+		model.addAttribute("aggio", probabilitaImplicita[3]);
+	
 		return "result";
 	}
 	

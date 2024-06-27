@@ -6,8 +6,20 @@
 	</head>
 	
 	<body>
-	Risultato:</br>
-	 <input type="text" th:value="${quotaB1}" readOnly>
+		Risultato <b>PASSO 1<b>:</br>	
+		Il valore delle PERCENTUALI dato dal BOOKMAKER è:</br>
+		
+		 -probabilità per la squadra di CASA di vincere secondo i BM è:
+		<input type="text" th:value="${marketValueB1}" readOnly>%</br>
+		
+		 -probabilità per la squadra in TRASFERTA di vincere secondo i BM è:
+		<input type="text" th:value="${marketValueB2}" readOnly>%</br>
+		
+		 -probabilità di PAREGGIARE secondo i BM è:
+		<input type="text" th:value="${marketValueBX}" readOnly>%</br>
+		
+		 -allibramento sulla seguente partita è:
+		<input type="text" th:value="${aggio}" readOnly>%</br>	
 	</body>
 	
 </html>
