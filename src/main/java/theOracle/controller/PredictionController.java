@@ -23,6 +23,9 @@ public class PredictionController {
 	@PostMapping("/dataReader")
 	public String dataReader(Model model,@RequestParam("quotaB1") String quotaB1) {
 		
+		
+		
+		
 		model.addAttribute("quotaB1", quotaB1);
 		return "result";
 	}
