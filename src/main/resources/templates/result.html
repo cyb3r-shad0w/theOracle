@@ -28,20 +28,77 @@
 		La probabilità per la squadra in TRASFERTA è: " + percPartiteTot2+"%");
 		La probabilità di PAREGGIARE è: " + percPartiteTotX+"%");
 
+		Risultato <b>PASSO 3</b>:</br>
+		Il valore dato dal calcolo delle ULTIME 5 PARTITE è:
+		System.out.println("La probabilità per la squadra di CASA è: " + percUltime51+"%");
+		System.out.println("La probabilità per la squadra in TRASFERTA è: " + percUltime52+"%");
+		System.out.println("La probabilità di PAREGGIARE è: " + percUltime5X+"%");
+
+		Risultato <b>PASSO 4</b>:</br>
+		Il valore dato dal calcolo delle sole VITTORIE/SCONFITTE IN CASA/TRASFERTA è:
+		System.out.println("La probabilità per la squadra di CASA è: " + percgarecatra1+"%");
+		System.out.println("La probabilità per la squadra in TRASFERTA è: " + percgarecatra2+"%");
+		System.out.println("La probabilità di PAREGGIARE è: " + percgarecatraX+"%");
+
+		Risultato <b>PASSO 5</b>:</br>
+		System.out.println("Il valore dato dal calcolo delle sole ULTIME 5 VITTORIE/SCONFITTE IN CASA/TRASFERTA è:");
+		System.out.println("La probabilità per la squadra di CASA è: " + percultime5catra1+"%");
+		System.out.println("La probabilità per la squadra in TRASFERTA è: " + percultime5catra2+"%");
+		System.out.println("La probabilità di PAREGGIARE è: " + percultime5catraX+"%");
+
+		Risultato <b>PASSO 6</b>:</br>
+		System.out.println(
+		"Il valore delle PERCENTUALI REALI,dato dall'anilisi statistica solo sulle vittorie/sconfitte, è:");
+		System.out.println("La probabilità reale per la squadra di CASA di vincere è: " + fairProbability1+"%");
+		System.out.println("La probabilità reale per la squadra in TRASFERTA di vincere è: " + fairProbability2+"%");
+		System.out.println("La probabilità reale di PAREGGIARE è: " + fairProbabilityX+"%");
+
+		Risultato <b>PASSO 7</b>:</br>
+		System.out.println("Le QUOTE REALI risultano quindi essere:");
+		System.out.println("Quota CASA : " + fairvalueR1);
+		System.out.println("Quota TRASFERTA : " + fairvalueR2);
+		System.out.println("Quota PAREGGIO : " + fairvalueRX);
+
+		Risultato <b>PASSO 8</b>:</br>
+		tipologiaDiPartita, potrei integrare direttamente qui la lettura tramite il metodo QSC
+		System.out.println("Differenza QUOTA REALE CASA - QUOTA BM = " + differenzaquota1);
+		System.out.println("Differenza QUOTA REALE TRASFERTA - QUOTA BM = " + differenzaquota2);
+		System.out.println("Differenza QUOTA REALE X - QUOTA BM = " + differenzaquotaX);
+		System.out.println("La % di differenza tra quotaReale1-quotaBM1 = "+percquota1+"%");
+		System.out.println("La % di differenza tra quotaReale2-quotaBM2 = "+percquota2+"%");
+		System.out.println("La % di differenza tra quotaRealeX-quotaBMX = "+percquotaX+"%");
+
+		Risultato <b>PASSO 9</b>:</br>
+		System.out.println("VALUE BET:");
+		System.out.println("La VALUE BET è una scommessa in cui le probabilità di ottenere un dato risultato" + "/n"
+		+ " è maggiore di quanto mostrino le quote offerte.");
+		System.out.println("ValueBet 1= " + vb1+"%");
+		System.out.println("ValueBet 2= " + vb2+"%");
+		System.out.println("ValueBet X= " + vbX+"%");
+		System.out.println("La valueBet con valore POSITIVO ci mostra una papabile quota su cui giocare");
+		System.out.println(
+		"La ValueBet con maggior valore NEGATIVO ci mostra dove il BM sta cercando di fare più guadagno e quindi l'evento che molto probabilmente NON si verificherà!");
+		System.out.println("ValueBet Totale= " + vbtotal+"%"+ " = Allibramento = " + aggio+"%");
+
+		Risultato <b>PASSO 10</b>:</br>
+		System.out.println("EXPECTED VALUE:");
+		System.out.println("Il VALORE ATTESO(EXPECTED VALUE) viene usato per valutare quale opzione scegliere" + "/n"
+		+ "affinchè possano essere massimizzati i profitti e minimizzate le perdite." + "/n"
+		+ "Può essere positivo o negativo consentendo così di determinare quale investimento è proficuo e quale no");
+		Risultato EXPECTED VALUE!
+		System.out.println("EXPECTED VALUE:" + ev);
+		<!-- TODO: da implementare-->
+
+		Risultato <b>PASSO 11</b>:</br>
+		Formula di Poisson
+		<!-- TODO: da implementare-->
+
+		Risultato <b>PASSO FINALE</b>:</br>
+		Lettura partita tramite tecnica QSC
+		<!-- TODO: da implementare nel predictionService-->
 
 
 
-		System.out.println("-----------------PASSO 6/10----------------");
-		cqr.percentualiReali();
-		System.out.println("-----------------PASSO 7/10----------------");
-		cqr.quoteReali();
-		System.out.println("-----------------PASSO 8/10----------------");
-		cqr.tipologiaDiPartita();
-		System.out.println("-----------------PASSO 9/10----------------");
-		cqr.valueBet();
-		System.out.println("-----------------PASSO 10/10----------------");
-		System.out.println("Calcola l'EXPECTED VALUE!");
-		System.out.println("-----------------COMING SOON---------------");
 	</body>
 	
 </html>

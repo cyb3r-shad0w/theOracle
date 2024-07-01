@@ -30,22 +30,40 @@ public class PredictionController {
 							@RequestParam("vittorieTotaliCasa") String vittorieTotaliCasa,
 							@RequestParam("sconfitteTotaliCasa") String sconfitteTotaliCasa,
 							@RequestParam("vittorieTotaliOspite") String vittorieTotaliOspite,
-							@RequestParam("sconfitteTotaliOspite") String sconfitteTotaliOspite
+							@RequestParam("sconfitteTotaliOspite") String sconfitteTotaliOspite,
+							@RequestParam("vittUltime5TotCasa") String vittUltime5TotCasa,
+							@RequestParam("sconfUltime5Casa") String sconfUltime5Casa,
+							@RequestParam("vittUltime5inTrasfOspite") String vittUltime5inTrasfOspite,
+							@RequestParam("sconfitteUltime5Ospite") String sconfitteUltime5Ospite,
+							@RequestParam("totatliPartiteCasaInCasa") String totatliPartiteCasaInCasa,
+							@RequestParam("totaliPartiteOspiteInTrasferta") String totaliPartiteOspiteInTrasferta,
+							@RequestParam("vittCasaTot") String vittCasaTot,
+							@RequestParam("sconfTrasTot") String sconfTrasTot,
+							@RequestParam("vittTrasTot") String vittTrasTot,
+							@RequestParam("sconfCasaTot") String sconfCasaTot,
+							@RequestParam("vittUltime5inCasa")String vittUltime5SoloinCasa,
+							@RequestParam("sconfUlt5inCasa")String sconfUlt5SoloinCasa,
+							@RequestParam("vittUltime5inTrasfOspite")String vittUltime5SoloinTrasfOspite,
+							@RequestParam("sconfUlt5inTraOspite")String sconfUlt5SoloinTraOspite
 							) {
-		//passo 1
-		String [] probabilitaImplicita= service.probabilitaImplicita(quotaB1, quotaBX, quotaB2);
-		model.addAttribute("marketValueB1", probabilitaImplicita[0]);
-		model.addAttribute("marketValueBX", probabilitaImplicita[1]);
-		model.addAttribute("marketValueB2", probabilitaImplicita[2]);
-		model.addAttribute("aggio", probabilitaImplicita[3]);
+		String [] predictionResult = service.prediction(
+				//passo1
+				quotaB1, quotaBX, quotaB2,
+				//passo2
+				partiteTotCasa, partiteTotOspite,vittorieTotaliCasa,sconfitteTotaliCasa,vittorieTotaliOspite,sconfitteTotaliOspite,
+				//passo3
+				vittUltime5TotCasa,sconfUltime5Casa,vittUltime5inTrasfOspite,sconfitteUltime5Ospite,
+				//passo4
+				totatliPartiteCasaInCasa,totaliPartiteOspiteInTrasferta, vittCasaTot, sconfTrasTot,	vittTrasTot, sconfCasaTot,
+				//passo5
+				vittUltime5SoloinCasa,sconfUlt5SoloinCasa,vittUltime5SoloinTrasfOspite,sconfUlt5SoloinTraOspite
+		);
 
-		//passo 2
-		String[] probabilitaPartiteTotali = service.probabilitaPartiteTotali(partiteTotCasa, partiteTotOspite,vittorieTotaliCasa,
-																			sconfitteTotaliCasa,vittorieTotaliOspite,
-																			sconfitteTotaliOspite);
-		model.addAttribute("percPartiteTot1", probabilitaPartiteTotali[0]);
-		model.addAttribute("percPartiteTotX", probabilitaPartiteTotali[1]);
-		model.addAttribute("percPartiteTot2", probabilitaPartiteTotali[2]);
+		model.addAttribute("", "");
+
+
+
+
 
 		return "result";
 	}
