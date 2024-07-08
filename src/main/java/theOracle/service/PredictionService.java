@@ -9,7 +9,7 @@ public class PredictionService {
 	//TODO: quando sarà completo tutto il programma, provare una run con il vecchio vs il nuovo per vedere che i risultati ottenuti siano uguali
 	final private int ULTIME_5 = 5;
 
-	public String[] prediction(String quotaB1,String quotaBX,String quotaB2,
+	public LinkedHashMap<String,Double> prediction(String quotaB1,String quotaBX,String quotaB2,
 							   String partiteTotCasa, String partiteTotOspite,
 							   String vittorieTotaliCasa, String sconfitteTotaliCasa,
 							   String vittorieTotaliOspite, String sconfitteTotaliOspite,
@@ -22,7 +22,6 @@ public class PredictionService {
 							   String vittUltime5SoloinTrasfOspite, String sconfUlt5SoloinTraOspite)
 	{
 		LinkedHashMap<String,Double> mapping = new LinkedHashMap<>();
-		String[] result = new String[4];
 
 		//passo1
 		Double[] probabilitaImplicita = probabilitaImplicita( Double.valueOf(quotaB1), Double.valueOf(quotaBX), Double.valueOf(quotaB2));
@@ -69,21 +68,27 @@ public class PredictionService {
 		mapping.put("fairProbabilityX",percentualiReali[1]);
 		mapping.put("fairProbability2",percentualiReali[2]);
 
-		result[0] = Double.toString(percentualiReali[0]);
-		result[1] = Double.toString(percentualiReali[1]);
-		result[2] = Double.toString(percentualiReali[2]);
-
 		//passo7
 		Double[] quoteReali = quoteReali(mapping.get("fairProbability1"),mapping.get("fairProbabilityX"),mapping.get("fairProbability2"));
-		mapping.put("fairvalueR1",percentualiReali[0]);
-		mapping.put("fairvalueRX",percentualiReali[1]);
-		mapping.put("fairvalueR2",percentualiReali[2]);
+		mapping.put("fairvalueR1",quoteReali[0]);
+		mapping.put("fairvalueRX",quoteReali[1]);
+		mapping.put("fairvalueR2",quoteReali[2]);
 
 		//passo8
-		result[3] = tipologiaDiPartita(Double.valueOf(quotaB1), Double.valueOf(quotaBX), Double.valueOf(quotaB2),
+		Double tipologiaDiPartita = tipologiaDiPartita(Double.valueOf(quotaB1), Double.valueOf(quotaBX), Double.valueOf(quotaB2),
 												  	   mapping.get("fairvalueR1"),mapping.get("fairvalueRX"),mapping.get("fairvalueR2"));
+		mapping.put("tipologiaDiPartita",tipologiaDiPartita);
 
-		return result;
+		//passo9
+		Double[] valueBet = valueBet(mapping.get("marketValueB1"),mapping.get("marketValueBX"),mapping.get("marketValueB2"),
+				mapping.get("fairProbability1"),mapping.get("fairProbabilityX"), mapping.get("fairProbability2"));
+		mapping.put("vb1",valueBet[0]);
+		mapping.put("vbX",valueBet[1]);
+		mapping.put("vb2",valueBet[2]);
+		mapping.put("vbtotal",valueBet[3]);
+
+
+		return mapping;
 	}
 
 	private Double[] probabilitaImplicita(Double quotaB1,Double quotaBX,Double quotaB2)
@@ -203,7 +208,7 @@ public class PredictionService {
 
 	}
 
-	public String tipologiaDiPartita(Double quotaB1,Double quotaBX,Double quotaB2,Double fairvalueR1,Double fairvalueRX,Double fairvalueR2)
+	public Double tipologiaDiPartita(Double quotaB1,Double quotaBX,Double quotaB2,Double fairvalueR1,Double fairvalueRX,Double fairvalueR2)
 	{// PASSO 8
 		double differenzaquota1 = fairvalueR1 - quotaB1;
 		double differenzaquota2 = fairvalueR2 - quotaB2;
@@ -214,63 +219,51 @@ public class PredictionService {
 		double percquotaX = Math.abs((differenzaquotaX / fairvalueRX) * 100);
 		double totalediff = percquota1 + percquota2 + percquotaX;
 
-		String result = "";
+		Double result = 0.0;
 
 		if (totalediff <= 17) {
 
-			result ="Analizzando la differenza tra Percentuale Reale e Percentuale BM questa partita risulta essere " +
-						"una PARTITA LINEARE(STATISTICA)!"+
-						"CONSIGLIO: Si possono studiare tutti i tipi di mercato, però se una delle differenze risulta " +
-						"essere negativa bisogna valutare anche una doppia chance"+
-						"INOLTRE: ";
+			result =1.0;
 			if ((fairvalueR1 < fairvalueRX && fairvalueRX < fairvalueR2)
 					|| (fairvalueR2 < fairvalueRX && fairvalueRX < fairvalueR1)) {
-				result +=
-						"Poichè quota1<quotaX<quota2 oppure quota2<quotaX<quota1 POSSO giocare il RISULTATO ESATTO,"+
-						"consultare la Formula di POISSON";
+				result = 1.1;
 			}
 			if (((fairvalueR1 < fairvalueRX && fairvalueR1 < fairvalueR2) && fairvalueRX > fairvalueR2)
 					|| ((fairvalueR1 < fairvalueRX && fairvalueR1 > fairvalueR2) && fairvalueRX > fairvalueR2)) {
-				result +=
-						"Poichè quota1<quota2<quotaX oppure quota2<quota1<quotaX NON POSSO giocare il RISULTATO ESATTO";
+				result = 1.2;
 
 			} else {
 				System.out.println("NIENTE");
 			}
 		}
 		if (totalediff > 17 && totalediff < 30) {
-			result =
-					"Analizzando la differenza tra Percentuale Reale e Percentuale BM questa partita risulta essere una " +
-					"PARTITA NON LINEARE(NON STATISTICA)!"+
-					"CONSIGLIO: Si possono studiare tutti i mercati dei GOL-NOGOL,UNDER-OVER,MULTIGOL dopo uno studio " +
-					"preventivo dell'andamento STATISTICO DEI GOL possibilmente con la Formula di POISSON";
+			result = 2.0;
 		}
 
 		if (totalediff >= 30) {
-			result =
-					"Analizzando la differenza tra Percentuale Reale e Percentuale BM questa partita risulta essere una " +
-					"PARTITA CON UNA FORTE FAVORITA(NON LINEARE CASA/TRASFERTA)!"+
-					"CONSIGLIO: Si possono giocare i mercati dell' 1-X-2, quindi risultato fisso ";
+			result =3.0;
 		}
 
 		return result;
 
 	}
 
-	public String[] valueBet() {// PASSO 9
+	public Double[] valueBet(Double marketValueB1, Double marketValueBX,Double marketValueB2,
+						   Double fairProbability1, Double fairProbabilityX, Double fairProbability2)
+	{// PASSO 9
 
-		double vb1 = marketValueB1 - fairProbability1;
-		double vb2 = marketValueB2 - fairProbability2;
-		double vbX = marketValueBX - fairProbabilityX;
-		double vbtotal = vb1 + vb2 + vbX;
+		Double vb1 = marketValueB1 - fairProbability1;
+		Double vb2 = marketValueB2 - fairProbability2;
+		Double vbX = marketValueBX - fairProbabilityX;
+		Double vbtotal = vb1 + vb2 + vbX;
 
-		String [] result = new String [3];
-		result[0]= Double.toString(fairProbability1);
-		result[1]= Double.toString(fairProbability2);
-		result[2]= Double.toString(fairProbabilityX);
+		Double[] result = new Double[4];
+		result[0]= vb1;
+		result[1]= vbX;
+		result[2]= vb2;
+		result[3]= vbtotal;
 
 		return result;
-
 
 	}
 

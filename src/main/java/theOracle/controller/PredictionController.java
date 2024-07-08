@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import theOracle.service.PredictionService;
 
+import java.util.LinkedHashMap;
+
 @Controller
 public class PredictionController {
 	
@@ -46,7 +48,7 @@ public class PredictionController {
 							@RequestParam("vittUltime5inTrasfOspite")String vittUltime5SoloinTrasfOspite,
 							@RequestParam("sconfUlt5inTraOspite")String sconfUlt5SoloinTraOspite
 							) {
-		String [] predictionResult = service.prediction(
+		LinkedHashMap<String,Double> predictionResult = service.prediction(
 				//passo1
 				quotaB1, quotaBX, quotaB2,
 				//passo2
@@ -59,7 +61,48 @@ public class PredictionController {
 				vittUltime5SoloinCasa,sconfUlt5SoloinCasa,vittUltime5SoloinTrasfOspite,sconfUlt5SoloinTraOspite
 		);
 
-		model.addAttribute("", "");
+		String tipologiaDiPartita ="";
+
+		if( predictionResult.get("tipologiaDiPartita") >= 1.0 || predictionResult.get("tipologiaDiPartita") <2.0){
+			tipologiaDiPartita="Analizzando la differenza tra Percentuale Reale e Percentuale BM questa partita risulta essere " +
+					"una PARTITA LINEARE(STATISTICA)!"+
+					"CONSIGLIO: Si possono studiare tutti i tipi di mercato, però se una delle differenze risulta " +
+					"essere negativa bisogna valutare anche una doppia chance"+
+					"INOLTRE: ";
+			if(predictionResult.get("tipologiaDiPartita") == 1.1){
+				tipologiaDiPartita +="Poichè quota1<quotaX<quota2 oppure quota2<quotaX<quota1 POSSO giocare il RISULTATO ESATTO,"+
+						"consultare la Formula di POISSON";
+			}
+			if(predictionResult.get("tipologiaDiPartita") == 1.2){
+				tipologiaDiPartita +="Poichè quota1<quota2<quotaX oppure quota2<quota1<quotaX NON POSSO giocare il RISULTATO ESATTO";
+			}
+		}else if(predictionResult.get("tipologiaDiPartita") == 2.0){
+			tipologiaDiPartita =
+					"Analizzando la differenza tra Percentuale Reale e Percentuale BM questa partita risulta essere una " +
+							"PARTITA NON LINEARE(NON STATISTICA)!"+
+							"CONSIGLIO: Si possono studiare tutti i mercati dei GOL-NOGOL,UNDER-OVER,MULTIGOL dopo uno studio " +
+							"preventivo dell'andamento STATISTICO DEI GOL possibilmente con la Formula di POISSON";
+		}else if (predictionResult.get("tipologiaDiPartita") == 3.0){
+			tipologiaDiPartita =
+					"Analizzando la differenza tra Percentuale Reale e Percentuale BM questa partita risulta essere una " +
+							"PARTITA CON UNA FORTE FAVORITA(NON LINEARE CASA/TRASFERTA)!"+
+							"CONSIGLIO: Si possono giocare i mercati dell' 1-X-2, quindi risultato fisso ";
+		}
+
+		model.addAttribute("marketValueB1", predictionResult.get("marketValueB1"));
+		model.addAttribute("marketValueBX", predictionResult.get("marketValueBX"));
+		model.addAttribute("marketValueB2", predictionResult.get("marketValueB2"));
+		model.addAttribute("aggio", predictionResult.get("aggio"));
+		model.addAttribute("fairProbability1", predictionResult.get("fairProbability1"));
+		model.addAttribute("fairProbabilityX", predictionResult.get("fairProbabilityX"));
+		model.addAttribute("fairProbability2", predictionResult.get("fairProbability2"));
+		model.addAttribute("tipologiaDiPartita", tipologiaDiPartita);
+		model.addAttribute("vb1", predictionResult.get("vb1"));
+		model.addAttribute("vbX", predictionResult.get("vbX"));
+		model.addAttribute("vb2", predictionResult.get("vb2"));
+		model.addAttribute("vbtotal", predictionResult.get("vbtotal"));
+
+
 
 
 

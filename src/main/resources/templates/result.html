@@ -21,7 +21,7 @@
 		 Allibramento sulla seguente partita è:
 		<input type="text" th:value="${aggio}" readOnly>%</br>
 
-		Risultato <b>PASSO 2</b>:</br>
+<!--		Risultato <b>PASSO 2</b>:</br>
 
 		Il valore dato dal calcolo delle PARTITE TOTALI è:
 		La probabilità per la squadra di CASA è: " + percPartiteTot1+"%");
@@ -45,56 +45,52 @@
 		System.out.println("La probabilità per la squadra di CASA è: " + percultime5catra1+"%");
 		System.out.println("La probabilità per la squadra in TRASFERTA è: " + percultime5catra2+"%");
 		System.out.println("La probabilità di PAREGGIARE è: " + percultime5catraX+"%");
-
+!-->
 		Risultato <b>PASSO 6</b>:</br>
-		System.out.println(
-		"Il valore delle PERCENTUALI REALI,dato dall'anilisi statistica solo sulle vittorie/sconfitte, è:");
-		System.out.println("La probabilità reale per la squadra di CASA di vincere è: " + fairProbability1+"%");
-		System.out.println("La probabilità reale per la squadra in TRASFERTA di vincere è: " + fairProbability2+"%");
-		System.out.println("La probabilità reale di PAREGGIARE è: " + fairProbabilityX+"%");
+		Il valore delle PERCENTUALI REALI,dato dall'anilisi statistica solo sulle vittorie/sconfitte, è:</br>
+		La probabilità reale per la squadra di CASA di vincere è: <input type="text" th:value="${fairProbability1}" readOnly>%</br>
+		La probabilità reale per la squadra in TRASFERTA di vincere è: <input type="text" th:value="${fairProbability2}" readOnly>%</br>
+		La probabilità reale di PAREGGIARE è: <input type="text" th:value="${fairProbabilityX}" readOnly>%</br>
 
-		Risultato <b>PASSO 7</b>:</br>
+<!--		Risultato <b>PASSO 7</b>:</br>
 		System.out.println("Le QUOTE REALI risultano quindi essere:");
 		System.out.println("Quota CASA : " + fairvalueR1);
 		System.out.println("Quota TRASFERTA : " + fairvalueR2);
-		System.out.println("Quota PAREGGIO : " + fairvalueRX);
+		System.out.println("Quota PAREGGIO : " + fairvalueRX); !-->
 
 		Risultato <b>PASSO 8</b>:</br>
-		tipologiaDiPartita, potrei integrare direttamente qui la lettura tramite il metodo QSC
-		System.out.println("Differenza QUOTA REALE CASA - QUOTA BM = " + differenzaquota1);
-		System.out.println("Differenza QUOTA REALE TRASFERTA - QUOTA BM = " + differenzaquota2);
-		System.out.println("Differenza QUOTA REALE X - QUOTA BM = " + differenzaquotaX);
-		System.out.println("La % di differenza tra quotaReale1-quotaBM1 = "+percquota1+"%");
-		System.out.println("La % di differenza tra quotaReale2-quotaBM2 = "+percquota2+"%");
-		System.out.println("La % di differenza tra quotaRealeX-quotaBMX = "+percquotaX+"%");
+		Dall'analisi della partita è risultata la seguente tipologia di partita:</br>
+		<input type="text" th:value="${tipologiaDiPartita}" readOnly>%</br>
 
 		Risultato <b>PASSO 9</b>:</br>
-		System.out.println("VALUE BET:");
-		System.out.println("La VALUE BET è una scommessa in cui le probabilità di ottenere un dato risultato" + "/n"
-		+ " è maggiore di quanto mostrino le quote offerte.");
-		System.out.println("ValueBet 1= " + vb1+"%");
-		System.out.println("ValueBet 2= " + vb2+"%");
-		System.out.println("ValueBet X= " + vbX+"%");
-		System.out.println("La valueBet con valore POSITIVO ci mostra una papabile quota su cui giocare");
-		System.out.println(
-		"La ValueBet con maggior valore NEGATIVO ci mostra dove il BM sta cercando di fare più guadagno e quindi l'evento che molto probabilmente NON si verificherà!");
-		System.out.println("ValueBet Totale= " + vbtotal+"%"+ " = Allibramento = " + aggio+"%");
+		VALUE BET:</br>
+		La VALUE BET è una scommessa in cui le probabilità di ottenere un dato risultato è maggiore di quanto mostrino le quote offerte.</br>
+		ValueBet 1= <input type="text" th:value="${vb1}" readOnly>%</br>
+		ValueBet X= <input type="text" th:value="${vbX}" readOnly>%</br>
+		ValueBet 2= <input type="text" th:value="${vb2}" readOnly>%</br>
+
+
+		La valueBet con valore POSITIVO ci mostra una papabile quota su cui giocare.</br>
+
+		La ValueBet con maggior valore NEGATIVO ci mostra dove il BM sta cercando di fare più guadagno e quindi l'evento che molto probabilmente NON si verificherà!</br>
+		ValueBet Totale= <input type="text" th:value="${vbtotal}" readOnly>%</br>
+		Allibramento = <input type="text" th:value="${aggio}" readOnly>%</br>
 
 		Risultato <b>PASSO 10</b>:</br>
-		System.out.println("EXPECTED VALUE:");
-		System.out.println("Il VALORE ATTESO(EXPECTED VALUE) viene usato per valutare quale opzione scegliere" + "/n"
-		+ "affinchè possano essere massimizzati i profitti e minimizzate le perdite." + "/n"
-		+ "Può essere positivo o negativo consentendo così di determinare quale investimento è proficuo e quale no");
-		Risultato EXPECTED VALUE!
-		System.out.println("EXPECTED VALUE:" + ev);
+		EXPECTED VALUE:</br>
+		Il VALORE ATTESO(EXPECTED VALUE) viene usato per valutare quale opzione scegliere
+		affinchè possano essere massimizzati i profitti e minimizzate le perdite.</br>
+		Può essere positivo o negativo consentendo così di determinare quale investimento è proficuo e quale no.</br>
+		Risultato EXPECTED VALUE!</br>
+		<input type="text" value="ev" readOnly>%</br>
 		<!-- TODO: da implementare-->
 
 		Risultato <b>PASSO 11</b>:</br>
-		Formula di Poisson
+		Formula di Poisson</br>
 		<!-- TODO: da implementare-->
 
 		Risultato <b>PASSO FINALE</b>:</br>
-		Lettura partita tramite tecnica QSC
+		Lettura partita tramite tecnica QSC</br>
 		<!-- TODO: da implementare nel predictionService-->
 
 
