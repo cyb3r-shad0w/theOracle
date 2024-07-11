@@ -67,13 +67,12 @@ public class PredictionController {
 			tipologiaDiPartita="Analizzando la differenza tra Percentuale Reale e Percentuale BM questa partita risulta essere " +
 					"una PARTITA LINEARE(STATISTICA)!"+
 					"CONSIGLIO: Si possono studiare tutti i tipi di mercato, però se una delle differenze risulta " +
-					"essere negativa bisogna valutare anche una doppia chance"+
-					"INOLTRE: ";
+					"essere negativa bisogna valutare anche una doppia chance";
 			if(predictionResult.get("tipologiaDiPartita") == 1.1){
-				tipologiaDiPartita +="Poichè quota1<quotaX<quota2 oppure quota2<quotaX<quota1 POSSO giocare il RISULTATO ESATTO,consultare la Formula di POISSON";
+				tipologiaDiPartita +=";INOLTRE: Poichè quota1<quotaX<quota2 oppure quota2<quotaX<quota1 POSSO giocare il RISULTATO ESATTO,consultare la Formula di POISSON";
 			}
 			if(predictionResult.get("tipologiaDiPartita") == 1.2){
-				tipologiaDiPartita +="Poichè quota1<quota2<quotaX oppure quota2<quota1<quotaX NON POSSO giocare il RISULTATO ESATTO";
+				tipologiaDiPartita +=";INOLTRE: Poichè quota1<quota2<quotaX oppure quota2<quota1<quotaX NON POSSO giocare il RISULTATO ESATTO";
 			}
 		}else if(predictionResult.get("tipologiaDiPartita") == 2.0){
 			tipologiaDiPartita =
@@ -100,6 +99,9 @@ public class PredictionController {
 		model.addAttribute("vbX", predictionResult.get("vbX"));
 		model.addAttribute("vb2", predictionResult.get("vb2"));
 		model.addAttribute("vbtotal", predictionResult.get("vbtotal"));
+		model.addAttribute("aggio1", predictionResult.get("aggio1"));
+		model.addAttribute("aggioX", predictionResult.get("aggioX"));
+		model.addAttribute("aggio2", predictionResult.get("aggio2"));
 
 
 

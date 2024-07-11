@@ -1,99 +1,74 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 	<head>
 		<meta charset="UTF-8">
 		<title>TheOracle Result page</title>
 	</head>
 	
 	<body>
-		Risultato <b>PASSO 1</b>:</br>
-		Il valore delle PERCENTUALI dato dal BOOKMAKER è:</br>
-		
-		 Probabilità per la squadra di CASA di vincere secondo i BM è:
-		<input type="text" th:value="${marketValueB1}" readOnly>%</br>
-		
-		 Probabilità per la squadra in TRASFERTA di vincere secondo i BM è:
-		<input type="text" th:value="${marketValueB2}" readOnly>%</br>
-		
-		 Probabilità di PAREGGIARE secondo i BM è:
-		<input type="text" th:value="${marketValueBX}" readOnly>%</br>
-		
-		 Allibramento sulla seguente partita è:
-		<input type="text" th:value="${aggio}" readOnly>%</br>
+		<b>PERCENTUALI BOOKMAKER</b>:</br> <!-- PASSO 1 !-->
 
-<!--		Risultato <b>PASSO 2</b>:</br>
+		 1:	<input type="text" th:value="${marketValueB1}" readOnly>%</br>
+		 X:	<input type="text" th:value="${marketValueBX}" readOnly>%</br>
+		 2:	<input type="text" th:value="${marketValueB2}" readOnly>%</br>
 
-		Il valore dato dal calcolo delle PARTITE TOTALI è:
-		La probabilità per la squadra di CASA è: " + percPartiteTot1+"%");
-		La probabilità per la squadra in TRASFERTA è: " + percPartiteTot2+"%");
-		La probabilità di PAREGGIARE è: " + percPartiteTotX+"%");
+		 Allibramento: <input type="text" th:value="${aggio}" readOnly>%</br>
 
-		Risultato <b>PASSO 3</b>:</br>
-		Il valore dato dal calcolo delle ULTIME 5 PARTITE è:
-		System.out.println("La probabilità per la squadra di CASA è: " + percUltime51+"%");
-		System.out.println("La probabilità per la squadra in TRASFERTA è: " + percUltime52+"%");
-		System.out.println("La probabilità di PAREGGIARE è: " + percUltime5X+"%");
+		<b>PERCENTUALI REALI</b>:</br> <!-- PASSO 6 !-->
 
-		Risultato <b>PASSO 4</b>:</br>
-		Il valore dato dal calcolo delle sole VITTORIE/SCONFITTE IN CASA/TRASFERTA è:
-		System.out.println("La probabilità per la squadra di CASA è: " + percgarecatra1+"%");
-		System.out.println("La probabilità per la squadra in TRASFERTA è: " + percgarecatra2+"%");
-		System.out.println("La probabilità di PAREGGIARE è: " + percgarecatraX+"%");
+		1: <input type="text" th:value="${fairProbability1}" readOnly>%</br>
+		X: <input type="text" th:value="${fairProbabilityX}" readOnly>%</br>
+		2: <input type="text" th:value="${fairProbability2}" readOnly>%</br>
 
-		Risultato <b>PASSO 5</b>:</br>
-		System.out.println("Il valore dato dal calcolo delle sole ULTIME 5 VITTORIE/SCONFITTE IN CASA/TRASFERTA è:");
-		System.out.println("La probabilità per la squadra di CASA è: " + percultime5catra1+"%");
-		System.out.println("La probabilità per la squadra in TRASFERTA è: " + percultime5catra2+"%");
-		System.out.println("La probabilità di PAREGGIARE è: " + percultime5catraX+"%");
-!-->
-		Risultato <b>PASSO 6</b>:</br>
-		Il valore delle PERCENTUALI REALI,dato dall'anilisi statistica solo sulle vittorie/sconfitte, è:</br>
-		La probabilità reale per la squadra di CASA di vincere è: <input type="text" th:value="${fairProbability1}" readOnly>%</br>
-		La probabilità reale per la squadra in TRASFERTA di vincere è: <input type="text" th:value="${fairProbability2}" readOnly>%</br>
-		La probabilità reale di PAREGGIARE è: <input type="text" th:value="${fairProbabilityX}" readOnly>%</br>
+		<b>VALUE BET</b>:</br> <!-- PASSO 9 !-->
 
-<!--		Risultato <b>PASSO 7</b>:</br>
-		System.out.println("Le QUOTE REALI risultano quindi essere:");
-		System.out.println("Quota CASA : " + fairvalueR1);
-		System.out.println("Quota TRASFERTA : " + fairvalueR2);
-		System.out.println("Quota PAREGGIO : " + fairvalueRX); !-->
-
-		Risultato <b>PASSO 8</b>:</br>
-		Dall'analisi della partita è risultata la seguente tipologia di partita:</br>
-		<textarea th:value="${tipologiaDiPartita}" readOnly></textarea></br>
-
-		Risultato <b>PASSO 9</b>:</br>
-		VALUE BET:</br>
-		La VALUE BET è una scommessa in cui le probabilità di ottenere un dato risultato è maggiore di quanto mostrino le quote offerte.</br>
 		ValueBet 1= <input type="text" th:value="${vb1}" readOnly>%</br>
 		ValueBet X= <input type="text" th:value="${vbX}" readOnly>%</br>
 		ValueBet 2= <input type="text" th:value="${vb2}" readOnly>%</br>
 
+		<b>Distribuzione allibramento/Aggio</b>:</br> <!-- PASSO 10 !-->
 
-		La valueBet con valore POSITIVO ci mostra una papabile quota su cui giocare.</br>
+		Aggio 1= <input type="text" th:value="${aggio1}" readOnly>%</br>
+		Aggio X= <input type="text" th:value="${aggioX}" readOnly>%</br>
+		Aggio 2= <input type="text" th:value="${aggio2}" readOnly>%</br>
 
-		La ValueBet con maggior valore NEGATIVO ci mostra dove il BM sta cercando di fare più guadagno e quindi l'evento che molto probabilmente NON si verificherà!</br>
-		ValueBet Totale= <input type="text" th:value="${vbtotal}" readOnly>%</br>
-		Allibramento = <input type="text" th:value="${aggio}" readOnly>%</br>
+		<b>Tipologia di partita</b>:</br> <!-- PASSO 8 !-->
+		<textarea th:text="${tipologiaDiPartita}" readOnly></textarea></br>
 
-		Risultato <b>PASSO 10</b>:</br>
-		EXPECTED VALUE:</br>
-		Il VALORE ATTESO(EXPECTED VALUE) viene usato per valutare quale opzione scegliere
-		affinchè possano essere massimizzati i profitti e minimizzate le perdite.</br>
-		Può essere positivo o negativo consentendo così di determinare quale investimento è proficuo e quale no.</br>
-		Risultato EXPECTED VALUE!</br>
-		<input type="text" value="ev" readOnly>%</br>
+
+		<b>EXPECTED VALUE</b>:</br>  <!-- PASSO 11 !-->
 		<!-- TODO: da implementare-->
 
-		Risultato <b>PASSO 11</b>:</br>
-		Formula di Poisson</br>
+		<b>Formula di Poisson</b>:</br> <!-- PASSO 12 !-->
 		<!-- TODO: da implementare-->
 
-		Risultato <b>PASSO FINALE</b>:</br>
-		Lettura partita tramite tecnica QSC</br>
+		<b>Lettura partita tramite tecnica QSC</b>:</br> <!-- PASSO FINALE !-->
 		<!-- TODO: da implementare nel predictionService-->
 
 
+	<hr width="100%" size="2">
+	<b>LEGENDA E SPIEGAZIONI</b>:</br>
+
+		<b>PERCENTUALI BOOKMAKER</b>:</br>  Quando l’allibramento è anomalo rispetto a quello normale applicato nel campionato scelto</br>
+		     è più frequente il verificarsi di un risultato a sorpresa.</br>
+
+		<b>VALUE BET</b>:</br>
+		La VALUE BET è una scommessa in cui le probabilità di ottenere un dato risultato è maggiore di quanto mostrino le quote offerte.</br>
+		Importante: quando si piazza nella zona sotto lo zero o comunque vicino allo zero indica una possibile quota favorita!</br>
+		Se dovessi ottenere una percentuale positiva dovresti valutare bene la tua giocata perché significa che non è una value bet.</br>
+		In ogni caso tra tutte le positive, più è piccola la % più è probabile che si verifichi quell'evento</br>
+		La ValueBet con maggior valore POSITIVO ci mostra dove il BM sta cercando di fare più guadagno e quindi l'evento che molto probabilmente NON si verificherà!</br>
+		Nel dubbio tra due % preferire una quota doppia chance con entrambe quelle quote</br>
+		Se la quota del bookmaker è molto più alta rispetto alla quota reale definita attraverso i calcoli statistici, si ha sicuramente a che fare con una value bet e si può cominciare a ragionare sulla puntata da fare.</br>
+		Nel calcio di solito le value bet si nascondono principalmente nella partite di campionati meno conosciuti, dove è più facile, per i bookmakers, fare delle proposte più rischiose, visti volui di gioco più bassi.</br>
+
+		<b>Distribuzione allibramento/Aggio</b>:</br>
+		Le percentuali positive sono quelle maggiorate mentre quelle negative sono quelle che sono state ridotte.</br>
+		Piu' viene aumentata una quota più vuol dire che il BM vuole guadagnare proprio su quella/e quota/e e quindi pensa che non si verifichera'.</br>
+		<b>EXPECTED VALUE</b>:</br>
+		Il VALORE ATTESO(EXPECTED VALUE) viene usato per valutare quale opzione scegliere
+		affinchè possano essere massimizzati i profitti e minimizzate le perdite.</br>
+		Può essere positivo o negativo consentendo così di determinare quale investimento è proficuo e quale no.</br>
 
 	</body>
 	

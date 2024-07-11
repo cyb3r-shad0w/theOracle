@@ -87,6 +87,13 @@ public class PredictionService {
 		mapping.put("vb2",valueBet[2]);
 		mapping.put("vbtotal",valueBet[3]);
 
+		//passo10 calcolo allibramento
+		Double[] percentualeAggio = percentualeAggio(mapping.get("marketValueB1"),mapping.get("marketValueBX"),mapping.get("marketValueB2"),
+				mapping.get("fairProbability1"),mapping.get("fairProbabilityX"), mapping.get("fairProbability2"),mapping.get("aggio"));
+		mapping.put("aggio1",percentualeAggio[0]);
+		mapping.put("aggioX",percentualeAggio[1]);
+		mapping.put("aggio2",percentualeAggio[2]);
+
 
 		return mapping;
 	}
@@ -232,8 +239,6 @@ public class PredictionService {
 					|| ((fairvalueR1 < fairvalueRX && fairvalueR1 > fairvalueR2) && fairvalueRX > fairvalueR2)) {
 				result = 1.2;
 
-			} else {
-				System.out.println("NIENTE");
 			}
 		}
 		if (totalediff > 17 && totalediff < 30) {
@@ -267,6 +272,25 @@ public class PredictionService {
 
 	}
 
+	public Double[] percentualeAggio(Double marketValueB1, Double marketValueBX,Double marketValueB2,
+							 Double fairProbability1, Double fairProbabilityX, Double fairProbability2,Double aggioTotale)
+	{// PASSO 10
+
+		Double aggio1 = marketValueB1 - fairProbability1 ;
+		Double aggioX = marketValueBX - fairProbabilityX ;
+		Double aggio2 = marketValueB2 - fairProbability2 ;
+
+		Double percentuale1= (aggio1/aggioTotale) * 100;
+		Double percentualeX= (aggioX/aggioTotale) * 100;
+		Double percentuale2= (aggio2/aggioTotale) * 100;
+
+		Double[] result = new Double[3];
+		result[0]= percentuale1;
+		result[1]= percentualeX;
+		result[2]= percentuale2;
+
+		return result;
+	}
 	public void expectedValue() {// PASSO 10
 //		double possibileVincita=%vincinta sulla quota scelta X valoreQuotaBM su cui scommetto
 //		double possibilePerdita=somma %delle altre due quote che non gioco X investimento
