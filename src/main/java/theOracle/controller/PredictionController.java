@@ -70,8 +70,7 @@ public class PredictionController {
 					"essere negativa bisogna valutare anche una doppia chance"+
 					"INOLTRE: ";
 			if(predictionResult.get("tipologiaDiPartita") == 1.1){
-				tipologiaDiPartita +="Poichè quota1<quotaX<quota2 oppure quota2<quotaX<quota1 POSSO giocare il RISULTATO ESATTO,"+
-						"consultare la Formula di POISSON";
+				tipologiaDiPartita +="Poichè quota1<quotaX<quota2 oppure quota2<quotaX<quota1 POSSO giocare il RISULTATO ESATTO,consultare la Formula di POISSON";
 			}
 			if(predictionResult.get("tipologiaDiPartita") == 1.2){
 				tipologiaDiPartita +="Poichè quota1<quota2<quotaX oppure quota2<quota1<quotaX NON POSSO giocare il RISULTATO ESATTO";
