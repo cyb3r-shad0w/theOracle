@@ -75,9 +75,12 @@ public class PredictionService {
 		mapping.put("fairvalueR2",quoteReali[2]);
 
 		//passo8
-		Double tipologiaDiPartita = tipologiaDiPartita(Double.valueOf(quotaB1), Double.valueOf(quotaBX), Double.valueOf(quotaB2),
+		Double[] tipologiaDiPartita = tipologiaDiPartita(Double.valueOf(quotaB1), Double.valueOf(quotaBX), Double.valueOf(quotaB2),
 												  	   mapping.get("fairvalueR1"),mapping.get("fairvalueRX"),mapping.get("fairvalueR2"));
-		mapping.put("tipologiaDiPartita",tipologiaDiPartita);
+		mapping.put("tipologiaDiPartita",tipologiaDiPartita[0]);
+		mapping.put("differenzaquota1",tipologiaDiPartita[1]);
+		mapping.put("differenzaquotaX",tipologiaDiPartita[2]);
+		mapping.put("differenzaquota2",tipologiaDiPartita[3]);
 
 		//passo9
 		Double[] valueBet = valueBet(mapping.get("marketValueB1"),mapping.get("marketValueBX"),mapping.get("marketValueB2"),
@@ -215,7 +218,7 @@ public class PredictionService {
 
 	}
 
-	public Double tipologiaDiPartita(Double quotaB1,Double quotaBX,Double quotaB2,Double fairvalueR1,Double fairvalueRX,Double fairvalueR2)
+	public Double[] tipologiaDiPartita(Double quotaB1,Double quotaBX,Double quotaB2,Double fairvalueR1,Double fairvalueRX,Double fairvalueR2)
 	{// PASSO 8
 		double differenzaquota1 = fairvalueR1 - quotaB1;
 		double differenzaquota2 = fairvalueR2 - quotaB2;
@@ -226,28 +229,34 @@ public class PredictionService {
 		double percquotaX = Math.abs((differenzaquotaX / fairvalueRX) * 100);
 		double totalediff = percquota1 + percquota2 + percquotaX;
 
-		Double result = 0.0;
+		Double tipologiaDiPartita = 0.0;
 
 		if (totalediff <= 17) {
 
-			result =1.0;
+			tipologiaDiPartita =1.0;
 			if ((fairvalueR1 < fairvalueRX && fairvalueRX < fairvalueR2)
 					|| (fairvalueR2 < fairvalueRX && fairvalueRX < fairvalueR1)) {
-				result = 1.1;
+				tipologiaDiPartita = 1.1;
 			}
 			if (((fairvalueR1 < fairvalueRX && fairvalueR1 < fairvalueR2) && fairvalueRX > fairvalueR2)
 					|| ((fairvalueR1 < fairvalueRX && fairvalueR1 > fairvalueR2) && fairvalueRX > fairvalueR2)) {
-				result = 1.2;
+				tipologiaDiPartita = 1.2;
 
 			}
 		}
 		if (totalediff > 17 && totalediff < 30) {
-			result = 2.0;
+			tipologiaDiPartita = 2.0;
 		}
 
 		if (totalediff >= 30) {
-			result =3.0;
+			tipologiaDiPartita =3.0;
 		}
+
+		Double [] result = new Double [4];
+		result[0]= tipologiaDiPartita;
+		result[1]= differenzaquota1;
+		result[2]= differenzaquotaX;
+		result[3]= differenzaquota2;
 
 		return result;
 

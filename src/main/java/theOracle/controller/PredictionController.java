@@ -95,6 +95,9 @@ public class PredictionController {
 		model.addAttribute("fairProbabilityX", predictionResult.get("fairProbabilityX"));
 		model.addAttribute("fairProbability2", predictionResult.get("fairProbability2"));
 		model.addAttribute("tipologiaDiPartita", tipologiaDiPartita);
+		model.addAttribute("differenzaquota1", predictionResult.get("differenzaquota1"));
+		model.addAttribute("differenzaquotaX", predictionResult.get("differenzaquotaX"));
+		model.addAttribute("differenzaquota2", predictionResult.get("differenzaquota2"));
 		model.addAttribute("vb1", predictionResult.get("vb1"));
 		model.addAttribute("vbX", predictionResult.get("vbX"));
 		model.addAttribute("vb2", predictionResult.get("vb2"));
