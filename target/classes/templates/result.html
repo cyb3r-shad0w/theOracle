@@ -33,6 +33,9 @@
 		Aggio 2= <input type="text" th:value="${aggio2}" readOnly>%</br>
 
 		<b>Tipologia di partita</b>:</br> <!-- PASSO 8 !-->
+		Differenzaquota1: <input type="text" th:value="${differenzaquota1}" readOnly>%</br>
+		DifferenzaquotaX: <input type="text" th:value="${differenzaquotaX}" readOnly>%</br>
+		Differenzaquota2: <input type="text" th:value="${differenzaquota2}" readOnly>%</br>
 		<textarea th:text="${tipologiaDiPartita}" readOnly></textarea></br>
 
 
@@ -48,10 +51,12 @@
 
 	<hr width="100%" size="2">
 	<b>LEGENDA E SPIEGAZIONI</b>:</br>
-	Passo 1: Quando l’allibramento è anomalo rispetto a quello normale applicato nel campionato scelto</br>
+
+		<b>PERCENTUALI BOOKMAKER</b>:</br>  Quando l’allibramento è anomalo rispetto a quello normale applicato nel campionato scelto</br>
 		     è più frequente il verificarsi di un risultato a sorpresa.</br>
 
-	Passo 9: La VALUE BET è una scommessa in cui le probabilità di ottenere un dato risultato è maggiore di quanto mostrino le quote offerte.</br>
+		<b>VALUE BET</b>:</br>
+		La VALUE BET è una scommessa in cui le probabilità di ottenere un dato risultato è maggiore di quanto mostrino le quote offerte.</br>
 		Importante: quando si piazza nella zona sotto lo zero o comunque vicino allo zero indica una possibile quota favorita!</br>
 		Se dovessi ottenere una percentuale positiva dovresti valutare bene la tua giocata perché significa che non è una value bet.</br>
 		In ogni caso tra tutte le positive, più è piccola la % più è probabile che si verifichi quell'evento</br>
@@ -60,9 +65,11 @@
 		Se la quota del bookmaker è molto più alta rispetto alla quota reale definita attraverso i calcoli statistici, si ha sicuramente a che fare con una value bet e si può cominciare a ragionare sulla puntata da fare.</br>
 		Nel calcio di solito le value bet si nascondono principalmente nella partite di campionati meno conosciuti, dove è più facile, per i bookmakers, fare delle proposte più rischiose, visti volui di gioco più bassi.</br>
 
-	Passo 10: Le percentuali positive sono quelle maggiorate mentre quelle negative sono quelle che sono state ridotte.</br>
+		<b>Distribuzione allibramento/Aggio</b>:</br>
+		Le percentuali positive sono quelle maggiorate mentre quelle negative sono quelle che sono state ridotte.</br>
 		Piu' viene aumentata una quota più vuol dire che il BM vuole guadagnare proprio su quella/e quota/e e quindi pensa che non si verifichera'.</br>
-	Passo 11: Il VALORE ATTESO(EXPECTED VALUE) viene usato per valutare quale opzione scegliere
+		<b>EXPECTED VALUE</b>:</br>
+		Il VALORE ATTESO(EXPECTED VALUE) viene usato per valutare quale opzione scegliere
 		affinchè possano essere massimizzati i profitti e minimizzate le perdite.</br>
 		Può essere positivo o negativo consentendo così di determinare quale investimento è proficuo e quale no.</br>
 
