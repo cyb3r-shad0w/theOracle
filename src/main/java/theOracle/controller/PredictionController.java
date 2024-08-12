@@ -7,8 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import theOracle.service.ApiCallService;
 import theOracle.service.PredictionService;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashMap;
 
 @Controller
@@ -16,6 +19,8 @@ public class PredictionController {
 	
 	@Autowired
 	PredictionService service;
+	@Autowired
+	ApiCallService apiCallService;
 	
 	@GetMapping("/")
 	public String index() {
@@ -24,8 +29,13 @@ public class PredictionController {
 
 	@PostMapping("/scheduledEvents")
 	public String scheduledEvents(Model model) {
-		//TODO: COSTRUISCO QUI LA PAGINA TRAMITE IL SERVIZIO DI APICALLSERVICE
-		model.addAttribute("test","this is a test");
+
+		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("YYYY-MM-dd");
+		LocalDate localDate = LocalDate.now();
+		String date = localDate.format(dateTimeFormatter);
+		String response = apiCallService.scheduledEvents(date);
+
+		model.addAttribute("test",response);
 		return "scheduledEvents";
 	}
 
