@@ -4,20 +4,22 @@
 		<meta charset="UTF-8">
 		<title>TheOracle page</title>
 	</head>
-	
+
 	<body>
-		Inserisci i valori per ottenere le percentuali reali.</br>
+	    Per essere indirizzato verso la pagina con gli eventi in programma oggi clicca
+		<form action="/scheduledEvents" method="post"><input type="submit" value="qui"></form></br>
+		Inserisci i valori manualmente per ottenere le percentuali reali.</br>
 		<form action="/dataReader" method="post" id="form">
-				(1)Quote Bookmaker:<br>
+				(1)Quote Bookmaker scelto per la giocata:<br>
 					Quota 1: <input type="text" name="quotaB1"/><br>
 					Quota X: <input type="text" name="quotaBX"/><br>
 					Quota 2: <input type="text" name="quotaB2"/><br>
 					
-				(2)Vittorie e sconfitte <b>TOTALI</b> in campionato squadra <b>CASA</b>:<br>
+				(2)Vittorie e sconfitte <b>TOTALI</b> in campionato squadra <b>CASA</b>:<br> api sofascore /total
 				Vittorie Casa: <input type="text" name="vittorieTotaliCasa"/><br>
 				Sconfitte Casa:<input type="text" name="sconfitteTotaliCasa"/><br>
 				
-				(2)Vittorie e sconfitte <b>TOTALI</b> in campionato squadra <b>OSPITE</b>:<br>
+				(2)Vittorie e sconfitte <b>TOTALI</b> in campionato squadra <b>OSPITE</b>:<br> api sofascore /total
 				Vittorie Ospite: <input type="text" name="vittorieTotaliOspite"/><br>
 				Sconfitte Ospite:<input type="text" name="sconfitteTotaliOspite"/><br>
 					
@@ -29,11 +31,11 @@
 				Vittorie Squadra Ospite:<input type="text" name="vittUltime5TotOspite"/><br>
 				Sconfitte Squadra Ospite:<input type="text" name="sconfitteUltime5Ospite"/><br>  
 				
-				(4)Vittorie e sconfitte <b>TOTALI IN CASA</b> in campionato squadra <b>CASA</b>:<br>
+				(4)Vittorie e sconfitte <b>TOTALI IN CASA</b> in campionato squadra <b>CASA</b>:<br> api sofascore /home
 				Vittorie Squadra Casa:<input type="text" name="vittCasaTot"/><br>
 				Sconfitte Squadra Casa:<input type="text" name="sconfCasaTot"/><br>  
 				
-				(4)Vittorie e sconfitte <b>TOTALI IN TRASFERTA</b> in campionato squadra <b>OSPITE</b>:<br>
+				(4)Vittorie e sconfitte <b>TOTALI IN TRASFERTA</b> in campionato squadra <b>OSPITE</b>:<br> api sofascore /away
 				Vittorie Squadra Ospite:<input type="text" name="vittTrasTot"/><br>
 				Sconfitte Squadra Ospite:<input type="text" name="sconfTrasTot"/><br>     
 				
@@ -45,11 +47,11 @@
 				Vittorie Ospite: <input type="text" name="vittUltime5inTrasfOspite"/><br>
 				Sconfitte Ospite:<input type="text" name="sconfUlt5inTraOspite"/><br>
 					
-				Numero <b>TOTALE</b> di partite giocate nel <b>CAMPIONATO IN ESAME</b>(AD ESEMPIO SERIE A) delle due squadre:
+				Numero <b>TOTALE</b> di partite giocate nel <b>CAMPIONATO IN ESAME</b>(AD ESEMPIO SERIE A) delle due squadre: api sofascore /total
 				Partite totali giocate in campionato squadra Casa:<input type="text" name="partiteTotCasa"/><br>
 				Partite totali giocate in campionato squadra Ospite:<input type="text" name="partiteTotOspite"/><br>
 				
-				Numero <b>TOTALE</b> di partite giocate in <b>CASA/TRASFERTA</b> nel <b>CAMPIONATO IN ESAME</b>(AD ESEMPIO SERIE A) delle due squadre:
+				Numero <b>TOTALE</b> di partite giocate in <b>CASA/TRASFERTA</b> nel <b>CAMPIONATO IN ESAME</b>(AD ESEMPIO SERIE A) delle due squadre: api sofascore /total
 				Partite totali giocate in casa squadra Casa:<input type="text" name="totatliPartiteCasaInCasa"/><br>
 				Partite totali giocate in trasferta squadra Ospite:<input type="text" name="totaliPartiteOspiteInTrasferta"/><br> 
 				

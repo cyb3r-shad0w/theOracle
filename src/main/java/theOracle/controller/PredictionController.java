@@ -21,7 +21,14 @@ public class PredictionController {
 	public String index() {
 		return "index";
 	}
-	
+
+	@PostMapping("/scheduledEvents")
+	public String scheduledEvents(Model model) {
+		//TODO: COSTRUISCO QUI LA PAGINA TRAMITE IL SERVIZIO DI APICALLSERVICE
+		model.addAttribute("test","this is a test");
+		return "scheduledEvents";
+	}
+
 	@PostMapping("/dataReader")
 	public String dataReader(Model model,
 							@RequestParam("quotaB1") String quotaB1,

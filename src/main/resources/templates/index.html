@@ -4,9 +4,11 @@
 		<meta charset="UTF-8">
 		<title>TheOracle page</title>
 	</head>
-	
+
 	<body>
-		Inserisci i valori per ottenere le percentuali reali.</br>
+	    Per essere indirizzato verso la pagina con gli eventi in programma oggi clicca
+		<form action="/scheduledEvents" method="post"><input type="submit" value="qui"></form></br>
+		Inserisci i valori manualmente per ottenere le percentuali reali.</br>
 		<form action="/dataReader" method="post" id="form">
 				(1)Quote Bookmaker scelto per la giocata:<br>
 					Quota 1: <input type="text" name="quotaB1"/><br>
