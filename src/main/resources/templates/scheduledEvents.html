@@ -8,5 +8,20 @@
 
 <input type="text" th:value="${test}" readOnly>%</br>
 
+<table>
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>JSONOBJECT</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="entry, stats : ${events}" >
+        <td th:text="${stats.index}"></td>
+        <td th:text="${entry}"></td>
+    </tr>
+    </tbody>
+</table>
+
 </body>
 </html>

@@ -1,14 +1,20 @@
 package theOracle.service;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.time.LocalDate;
+import java.time.Duration;
+import java.util.LinkedHashMap;
+import java.util.Scanner;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -19,38 +25,110 @@ public class ApiCallService {
     String apiURL = "https://api.sofascore.app/api/v1/";
     private Logger log = LoggerFactory.getLogger(ApiCallService.class);
 
-    public String scheduledEvents(String date){
+    public LinkedHashMap<Integer, JSONObject> scheduledEvents(String date){
 
-        HttpResponse<String> response = null;
+        JSONArray eventsArray = null;
         JSONObject responseBodyJSON = null;
-        JSONArray responseArray = null;
 
-        String apiCallURI = apiURL+"sport/football/scheduled-events/"+date;
-        log.info("The apiCall is ready:{"+apiCallURI+"}");
+        String eventsFilePath = "C:\\Users\\Antonio\\Desktop\\DataBaseSofaScore\\scheduledEvents\\events_"+date+".json";
+
+        LinkedHashMap<Integer,JSONObject> events = null;
 
         try {
-            log.info("Try to call the apiCall......");
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(apiCallURI))
-                    .header("content-type", "application/octet-stream")
-                    .method("GET", HttpRequest.BodyPublishers.noBody()).build();
 
-            response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+            log.info("Checking if db file exist alredy for today before calling the service.....");
 
-            log.info("Request completed.....");
+            File eventsFile = new File(eventsFilePath);
 
-            log.info("Initializing JSONObject....");
-            responseBodyJSON = new JSONObject(response.body());
+            if (eventsFile.exists()){
 
-            responseArray = responseBodyJSON.getJSONArray("events");
+                Scanner myReader = new Scanner(eventsFile);
+
+                while (myReader.hasNextLine()) {
+                    responseBodyJSON = new JSONObject(myReader.nextLine());
+                    eventsArray = responseBodyJSON.getJSONArray("events");
+                }
+
+                myReader.close();
+
+                log.info("File for today alredy exists.......");
+
+            }else {
+
+               // eventsArray = scheduledEventsApiCall(date,null); non funziona bene questo metodo, spesso non ritorna nulla l'api
+                //optato per fare la chiamata manualmente tramite postman e poi carico i dati su un file manualmente
+
+            }
+            events = new LinkedHashMap<>();
+
+            for (int i = 0; i < eventsArray.length(); i++) { // iterate over array to get inner JSON objects and
+                // extract values inside
+                // TODO:  inserire qui una stringa dove concatenare i dati che mi interessano e li inserisco in events
+                // con chiave il valore i, quindi Integer,String , poi scomporrò i dati quando arrivano, si ma come li scompongo
+                // poi con thymeleaf
+                JSONObject event = eventsArray.getJSONObject(i); // each item of Array is a JSON object
+                events.put(i,event);
+                if (event.has("tournament")) {
+                    JSONObject tournament = event.getJSONObject("tournament");
+                    log.info(tournament.toString());
+                }
+
+            }
 
         }catch(Exception e){
             log.error(e.getMessage());
         }
 
-        if(responseArray == null){
-            return "";
+        return events;
+    }
+    private JSONArray scheduledEventsApiCall (String date, JSONArray eventsArray){
+
+        log.info("Try to call the scheduledEvents apiCall......");
+
+        JSONObject responseBodyJSON = null;
+
+        String eventsFilePath = "C:\\Users\\Antonio\\Desktop\\DataBaseSofaScore\\scheduledEvents\\events_"+date+".json";
+        String apiCallURI = apiURL+"sport/football/scheduled-events/"+date;
+        log.info("The apiCall is ready:{"+apiCallURI+"}");
+
+        HttpResponse<String> response = null;
+
+        try {
+            HttpClient client = HttpClient.newHttpClient();
+
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(apiCallURI))
+                    .header("Host", "api.sofascore.app")
+                    .GET()
+                    .build();
+
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            log.info("Request completed.....");
+
+            log.info("Initializing JSONObject....");
+
+            responseBodyJSON = new JSONObject(response.body());
+
+            eventsArray = responseBodyJSON.getJSONArray("events");
+
+            if (eventsArray != null) {
+
+                FileWriter myWriter = new FileWriter(eventsFilePath);
+                myWriter.write(response.body());
+                myWriter.close();
+                log.info("Successfully wrote events to the file.....");
+
+            }
+        }catch (Exception e){
+            log.error(e.getMessage());
         }
-        return responseArray.toString();
+
+        if(eventsArray == null){
+            scheduledEventsApiCall(date,eventsArray);
+        }
+
+        return eventsArray;
+
     }
 }

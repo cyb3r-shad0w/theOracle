@@ -1,5 +1,6 @@
 package theOracle.controller;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,9 +34,11 @@ public class PredictionController {
 		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("YYYY-MM-dd");
 		LocalDate localDate = LocalDate.now();
 		String date = localDate.format(dateTimeFormatter);
-		String response = apiCallService.scheduledEvents(date);
 
-		model.addAttribute("test",response);
+		LinkedHashMap<Integer, JSONObject> events = apiCallService.scheduledEvents(date);
+
+		model.addAttribute("events",events);
+
 		return "scheduledEvents";
 	}
 
