@@ -65,7 +65,9 @@ public class ApiCallService {
                 // extract values inside
                 // TODO:  inserire qui una stringa dove concatenare i dati che mi interessano e li inserisco in events
                 // con chiave il valore i, quindi Integer,String , poi scomporrò i dati quando arrivano, si ma come li scompongo
-                // poi con thymeleaf
+                // poi con thymeleaf----> faccio degli oggetti che contengono i dati, tipo oggetto Tournament etc e uno
+                // generico per contenere quei dati che non sono oggetti json e poi li metto tutti in un array che poi
+                // metto nella mappa events con id l'id dell'evento
                 JSONObject event = eventsArray.getJSONObject(i); // each item of Array is a JSON object
                 events.put(i,event);
                 if (event.has("tournament")) {
