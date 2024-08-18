@@ -35,7 +35,7 @@ public class PredictionController {
 		LocalDate localDate = LocalDate.now();
 		String date = localDate.format(dateTimeFormatter);
 
-		LinkedHashMap<Integer, JSONObject> events = apiCallService.scheduledEvents(date);
+		LinkedHashMap<Integer, Object[]> events = apiCallService.scheduledEvents(date);
 
 		model.addAttribute("events",events);
 

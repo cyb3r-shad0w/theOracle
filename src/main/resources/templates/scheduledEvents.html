@@ -16,9 +16,18 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="entry, stats : ${events}" >
+    <tr th:each="entry, stats : ${events}">
         <td th:text="${stats.index}"></td>
         <td th:text="${entry}"></td>
+        <td>
+            <table>
+                <tbody>
+                <tr th:each="object : ${entry}">
+                    <td th:text="${object}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
     </tr>
     </tbody>
 </table>

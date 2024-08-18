@@ -11,7 +11,6 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.time.Duration;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
 
@@ -25,14 +24,14 @@ public class ApiCallService {
     String apiURL = "https://api.sofascore.app/api/v1/";
     private Logger log = LoggerFactory.getLogger(ApiCallService.class);
 
-    public LinkedHashMap<Integer, JSONObject> scheduledEvents(String date){
+    public LinkedHashMap<Integer,Object[]> scheduledEvents(String date){
 
         JSONArray eventsArray = null;
         JSONObject responseBodyJSON = null;
 
         String eventsFilePath = "C:\\Users\\Antonio\\Desktop\\DataBaseSofaScore\\scheduledEvents\\events_"+date+".json";
 
-        LinkedHashMap<Integer,JSONObject> events = null;
+        LinkedHashMap<Integer,Object[]> events = null;
 
         try {
 
@@ -70,11 +69,74 @@ public class ApiCallService {
                 // metto nella mappa events con id l'id dell'evento
 
                 JSONObject event = eventsArray.getJSONObject(i); // each item of Array is a JSON object
-                events.put(i,event);
+
+                Object[] evento = new Object[11];
+
+                JSONObject tournament = null;
                 if (event.has("tournament")) {
-                    JSONObject tournament = event.getJSONObject("tournament");
-                    log.info(tournament.toString());
+                    tournament = event.getJSONObject("tournament");
+                    evento[0] = tournament;
                 }
+
+                JSONObject season = null;
+                if (event.has("season")) {
+                    season = event.getJSONObject("season");
+                    evento[1] = season;
+                }
+
+                JSONObject roundInfo = null;
+                if (event.has("roundInfo")) {
+                    roundInfo = event.getJSONObject("roundInfo");
+                    evento[2] = roundInfo;
+                }
+
+                JSONObject status = null;
+                if (event.has("status")) {
+                    status = event.getJSONObject("status");
+                    evento[3] = status;
+                }
+
+                String winnerCode = "N";
+                if (event.has("winnerCode")) {
+                    winnerCode = event.get("winnerCode").toString();
+                    evento[4] = winnerCode;
+                }
+
+                JSONObject homeTeam = null;
+                if (event.has("homeTeam")) {
+                    homeTeam = event.getJSONObject("homeTeam");
+                    evento[5] = homeTeam;
+                }
+                JSONObject awayTeam = null;
+                if (event.has("awayTeam")) {
+                    awayTeam = event.getJSONObject("awayTeam");
+                    evento[6] = awayTeam;
+                }
+
+                JSONObject homeScore = null; // qui sono contenuti i dati sui goal
+                if (event.has("homeScore")) {
+                    homeScore = event.getJSONObject("homeScore");
+                    evento[7] = homeScore;
+                }
+                JSONObject awayScore = null;
+                if (event.has("awayScore")) {
+                    awayScore = event.getJSONObject("awayScore");
+                    evento[8] = awayScore;
+                }
+
+                String id = "N";
+                if (event.has("id")) {
+                    id = event.get("id").toString();
+                    evento[9] = id;
+                }
+
+                String startTimestamp = "N";
+                if (event.has("startTimestamp")) {
+                    startTimestamp = event.get("startTimestamp").toString();
+                    evento[10] = startTimestamp;
+                }
+
+                events.put(i,evento);
 
             }
 
@@ -85,7 +147,7 @@ public class ApiCallService {
         return events;
     }
     private JSONArray scheduledEventsApiCall (String date, JSONArray eventsArray){
-
+        //TODO: da sistemare la chiamata perche attualmente  non funziona.
         log.info("Try to call the scheduledEvents apiCall......");
 
         JSONObject responseBodyJSON = null;
